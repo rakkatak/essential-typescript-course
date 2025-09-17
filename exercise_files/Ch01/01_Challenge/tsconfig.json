@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+    "outDir": "build", // build js here
+    "target": "esnext", // ECMAScript version, ECMAScript is a standard for scripting languages including JavaScript. ESNext is the next or upcoming version of ECMAScript (i.e. the latest)
+    "allowJs": true, // Allow Javascript in the folders
+    "checkJs": true // Check the Javascript
+    },
+"include": ["src/**/*"]
+}

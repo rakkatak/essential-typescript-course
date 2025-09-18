@@ -1,33 +1,30 @@
 
-interface CodingCourse {
-  id: number;
-  title: string;
-  status: Status;
-  completedOn?: Date;
+class ToDo {
+    id: number
+    title: string
+    status: ToDoStatus
+    completedOn?: Date
 }
 
-enum Status {
-    Active = "active",
-    Inactive = "inactive",
+enum ToDoStatus {
     Done = "done",
-    New = "new",
-    InProgress = "in-progress",
-    ToDo = "todo"
+    ToDo = "todo",
+    InProgress = "in-progress"
 }
 
-const todoItems:CodingCourse[] = [
-    { id: 1, title: "Learn HTML", status: Status.Done, completedOn: new Date("2021-09-11") },
-    { id: 2, title: "Learn TypeScript", status: Status.InProgress },
-    { id: 3, title: "Write the best app in the world", status: Status.ToDo },
+const todoItems: ToDo[] = [
+    { id: 1, title: "Learn HTML", status: ToDoStatus.Done, completedOn: new Date("2021-09-11") },
+    { id: 2, title: "Learn TypeScript", status: ToDoStatus.InProgress },
+    { id: 3, title: "Write the best app in the world", status: ToDoStatus.ToDo },
 ]
 
-function addTodoItem(todo: string): CodingCourse {
+function addTodoItem(toDoTitle: string): ToDo {
     const id = getNextId(todoItems)
 
-    const newTodo:CodingCourse  = {
+    const newTodo: ToDo = {
         id,
-        title: todo,
-        status: Status.ToDo,
+        title: toDoTitle,
+        status: ToDoStatus.ToDo,
     }
 
     todoItems.push(newTodo)
@@ -35,12 +32,11 @@ function addTodoItem(todo: string): CodingCourse {
     return newTodo
 }
 
-function getNextId<T extends CodingCourse>(items: T[]):number {
-    // return items.reduce(myFunc, 0) + 1
-    return items.reduce((max, x) => x.id > max ? x.id : max, 0) + 1;
+function getNextId<T extends ToDo>(items: T[]): number {
+    return  items.reduce(getMaxId2, 0) + 1
 }
 
-function myFunc(max, x): number {
+function getMaxId2<T extends ToDo>(max: number, x: T): number {
     return x.id > max ? x.id : max;
 }
 

@@ -54,6 +54,10 @@ postalCode: string;
 ## Type Alias
 
 type ContactName = string;
+type contactBirthDate = Date | number | string; // This type can be a date, number or string
+type AddressableContact = Contact & Address // Assume Contact does not extend Address.
+// This type now combines Contact & Address
+type ContactStatus = "active" | "inactive" | "string"; // Like an enum
 
 ## Enums
 

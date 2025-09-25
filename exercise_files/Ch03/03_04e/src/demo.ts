@@ -46,4 +46,4 @@ function handleEvent<T extends keyof ContactEvents>(
     }
 }
 
-handleEvent("statusChanged", evt => evt)
+handleEvent("statusChanged", evt => {console.log(evt)})

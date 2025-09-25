@@ -17,6 +17,8 @@ interface ContactEvent {
     contactId: number;
 }
 
+type Awesome = Contact["address"]["street"];
+
 interface ContactDeletedEvent extends ContactEvent { 
 }
 

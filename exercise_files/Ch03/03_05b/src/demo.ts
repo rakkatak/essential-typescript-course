@@ -1,4 +1,4 @@
-let x = { name: "Wruce Bayne" };
+let x: Record<string, string | number> = { name: "Wruce Bayne" };
 x.id = 1234;
 
 
@@ -25,9 +25,9 @@ interface Query {
     matches(val): boolean;
 }
 
-function searchContacts(contacts: Contact[], query) {
+function searchContacts(contacts: Contact[], query: Record<keyof Contact, Query>) {
     return contacts.filter(contact => {
-        for (const property of Object.keys(contact)) {
+        for (const property of Object.keys(contact) as (keyof Contact)[]) {
             // get the query object for this property
             const propertyQuery = query[property];
             // check to see if it matches
@@ -40,11 +40,38 @@ function searchContacts(contacts: Contact[], query) {
     })
 }
 
-const filteredContacts = searchContacts(
-    [/* contacts */],
-    {
-        id: { matches: (id) => id === 123 },
-        name: { matches: (name) => name === "Carol Weaver" },
-        phoneNumber: { matches: (name) => name === "Carol Weaver" },
+let myContacts: Contact[] = [
+    {id: 122,
+        name: "anita",
+        status: "active",
+        address: {
+            street: "5 clinton",
+            province: "on",
+            postalCode: "m6m6m6"
+        }
+    },
+    {id: 124,
+        name: "Carol Weaver",
+        status: "active",
+        address: {
+            street: "3 manning",
+            province: "on",
+            postalCode: "l3l3l3"
+        }
     }
+
+]
+
+const filteredContacts = searchContacts(
+    myContacts,
+    {
+        id: { matches: (id) => id === 122 },
+        name: { matches: (name) => name === "Carol Weaver" },
+        status: {matches: (status) => false},
+        address: {matches: (address) => false}
+    }
+
 );
+
+
+    console.log('fiteredContacts', filteredContacts);

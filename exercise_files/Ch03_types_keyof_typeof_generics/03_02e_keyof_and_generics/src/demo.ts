@@ -23,3 +23,5 @@ function getValue <T, U extends keyof T>(source:T, propertyName: U){
 }
 
 const value = getValue({min:1,max:34},"max")
+
+console.log("value", value);

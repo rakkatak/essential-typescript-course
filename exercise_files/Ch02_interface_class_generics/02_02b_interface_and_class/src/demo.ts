@@ -25,3 +25,20 @@ let primaryContact: Contact = {
     city: "",
     postalCode: ""
 }
+
+class MyThing {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+        console.log("My name: ", this.name);
+    }
+
+    updateName = (): string => {
+        const updatedName = this.name + "!";
+        return updatedName;
+    }
+}
+
+const myCatThing = new MyThing("piccolo");
+console.log(myCatThing.updateName())
